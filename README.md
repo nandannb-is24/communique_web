@@ -2,25 +2,10 @@
 
 A professional letter generator with real-time A4 preview, manual table breaks, and draggable signatures. Designed for cadets and batchmates to quickly generate formal letters.
 
-## 🚀 How to Deploy on Vercel
+**🌍 Live Web Version Available!**  
+Use the app instantly right in your browser:  
+[**https://communiqueweb.vercel.app/**](https://communiqueweb.vercel.app/)
 
-This application is built with Vite and React, making it incredibly easy to deploy on Vercel.
-
-1. **Import the Repository**:
-    * Go to [Vercel.com/new](https://vercel.com/new).
-    * Connect your GitHub account and select this `Communique-web` repository.
-    * Vercel will automatically detect the Vite framework and configure the build settings.
-
-2. **Configure Environment Variables (Crucial Step)**:
-    * Before clicking Deploy, expand the **Environment Variables** section.
-    * Add a new variable:
-      * **Name**: `VITE_GROQ_API_KEY`
-      * **Value**: *(Paste your Groq API key here, e.g., `gsk_woQUHf...`)*
-    * Click **Add**.
-
-3. **Deploy**:
-    * Click the **Deploy** button.
-    * Wait a few seconds for the build to finish. Your app will now be live at a public URL!
 
 ## 📖 User Manual (Field Manual)
 
