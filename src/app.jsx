@@ -65,9 +65,8 @@ function parseSheetData(data) {
 }
 
 export default function App() {
-  // Obfuscated key to bypass security scanners natively
-  const _k = "=k2a3sGMPBzVSVHRjlnWQd2Msd1cChXaxklRzIWekd0VTZlYphUMq1EaiNHVrtmZIVVUvd3XrN3Z";
-  const [groqApiKey, setGroqApiKey] = useState(atob(_k.split('').reverse().join('')));
+  // Load API key from environment variable (configure this in Vercel)
+  const [groqApiKey, setGroqApiKey] = useState(import.meta.env.VITE_GROQ_API_KEY || "");
   const [letterType, setLetterType] = useState("Submitted");
   const [toAddress, setToAddress] = useState("");
   const [date, setDate] = useState("");

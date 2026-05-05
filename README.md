@@ -1,24 +1,26 @@
-# Communiqué Letter Generator (Chrome Extension)
+# Communiqué Letter Generator (Web Version)
 
 A professional letter generator with real-time A4 preview, manual table breaks, and draggable signatures. Designed for cadets and batchmates to quickly generate formal letters.
 
-## How to Install
+## 🚀 How to Deploy on Vercel
 
-1.  **Download the Code**:
-    *   Click the green **"Code"** button at the top of this GitHub page.
-    *   Select **"Download ZIP"** and extract the folder on your computer.
+This application is built with Vite and React, making it incredibly easy to deploy on Vercel.
 
-2.  **Open Extensions Page**:
-    *   Open Google Chrome.
-    *   In the address bar, type `chrome://extensions/` and press Enter.
+1. **Import the Repository**:
+    * Go to [Vercel.com/new](https://vercel.com/new).
+    * Connect your GitHub account and select this `Communique-web` repository.
+    * Vercel will automatically detect the Vite framework and configure the build settings.
 
-3.  **Enable Developer Mode**:
-    *   Toggle the **"Developer mode"** switch in the top right corner to **ON**.
+2. **Configure Environment Variables (Crucial Step)**:
+    * Before clicking Deploy, expand the **Environment Variables** section.
+    * Add a new variable:
+      * **Name**: `VITE_GROQ_API_KEY`
+      * **Value**: *(Paste your Groq API key here, e.g., `gsk_woQUHf...`)*
+    * Click **Add**.
 
-4.  **Load the Extension**:
-    *   Click the **"Load unpacked"** button.
-    *   **⚠️ IMPORTANT STEP**: Do **NOT** select the main `Communique-main` folder.
-    *   Instead, open the `Communique-main` folder and select the folder inside it named **`Communique_extension`**.
+3. **Deploy**:
+    * Click the **Deploy** button.
+    * Wait a few seconds for the build to finish. Your app will now be live at a public URL!
 
 ## 📖 User Manual (Field Manual)
 
