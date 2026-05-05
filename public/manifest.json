@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Communiqué Letter Generator",
+  "version": "1.0.0",
+  "description": "Professional Letter Generator with real-time A4 preview and manual table breaks.",
+  "action": {
+    "default_title": "Open Communiqué"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"],
+  "icons": {
+    "16": "communique_logo.png",
+    "48": "communique_logo.png",
+    "128": "communique_logo.png"
+  }
+}
