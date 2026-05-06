@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
+import { Analytics } from "@vercel/analytics/react";
 import EditorPanel from "./components/EditorPanel";
 import PreviewPanel from "./components/PreviewPanel";
 
@@ -140,6 +141,7 @@ export default function App() {
     <div className="h-screen print:h-auto print:block flex bg-neutral-100 overflow-hidden print:overflow-visible font-sans">
       <EditorPanel state={state} />
       <PreviewPanel state={{ ...state, tables: previewTables }} />
+      <Analytics />
     </div>
   );
 }
