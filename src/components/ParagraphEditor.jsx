@@ -23,7 +23,7 @@ export default function ParagraphEditor({ paras, setParas, groqApiKey }) {
             {
               role: "system",
               content:
-                "You are an expert formal letter editor. Enhance the grammar, tone, and clarity of the following paragraph to make it highly professional. DO NOT include any concluding notes, sign-offs, or phrases like 'Thank you' or 'Yours faithfully'. Focus ONLY on enhancing the body text provided. Preserve any HTML formatting tags like <b>, <i>, or <u>. Return only the improved text with no extra commentary.",
+                "You are an expert formal letter editor. Enhance the grammar, tone, and clarity of the following paragraph to make it highly professional. The text must be written from the perspective of someone *requesting* permission or arrangements (such as requesting attendance, bus arrangements, or approvals), NOT from the perspective of someone sanctioning or granting them. DO NOT include any concluding notes, sign-offs, or phrases like 'Thank you' or 'Yours faithfully'. Focus ONLY on enhancing the body text provided. Preserve any HTML formatting tags like <b>, <i>, or <u>. Return only the improved text with no extra commentary.",
             },
             { role: "user", content: textToEnhance },
           ],
