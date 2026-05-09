@@ -65,8 +65,18 @@ function parseSheetData(data) {
 }
 
 export default function App() {
-  // Load API key from environment variable (configure this in Vercel)
-  const [groqApiKey, setGroqApiKey] = useState(import.meta.env.VITE_GROQ_API_KEY || "");
+  // Load API key from localStorage, then environment variable
+  const [groqApiKey, setGroqApiKey] = useState(
+    () => localStorage.getItem("groqApiKey") || ""
+  );
+
+  useEffect(() => {
+    if (groqApiKey) {
+      localStorage.setItem("groqApiKey", groqApiKey);
+    } else {
+      localStorage.removeItem("groqApiKey");
+    }
+  }, [groqApiKey]);
   const [letterType, setLetterType] = useState("Submitted");
   const [toAddress, setToAddress] = useState("");
   const [date, setDate] = useState("");

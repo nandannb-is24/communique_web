@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FileText, Calendar, AlignLeft, Table, PenLine, ChevronDown, ChevronRight } from "lucide-react";
+import { FileText, Calendar, AlignLeft, Table, PenLine, ChevronDown, ChevronRight, Settings } from "lucide-react";
 import ParagraphEditor from "./ParagraphEditor";
 import TableBuilder from "./TableBuilder";
 
@@ -157,6 +157,21 @@ export default function EditorPanel({ state }) {
               onChange={(e) => setSignature({ ...signature, role: e.target.value })}
             />
           </Field>
+        </Section>
+
+        <Section icon={Settings} title="Settings" defaultOpen={false}>
+          <Field label="Groq API Key (Optional)">
+            <input
+              type="password"
+              className={inputClass}
+              placeholder="Leave blank to use default app key..."
+              value={groqApiKey}
+              onChange={(e) => setGroqApiKey(e.target.value)}
+            />
+          </Field>
+          <p className="text-[11px] text-gray-400 mt-2 leading-relaxed">
+            The app uses a built-in server proxy by default. If you encounter rate limits, you can enter your own personal Groq API key here to bypass them. It is stored securely on your device.
+          </p>
         </Section>
 
       </div>

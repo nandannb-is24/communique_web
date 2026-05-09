@@ -9,25 +9,44 @@ export default function ParagraphEditor({ paras, setParas, groqApiKey }) {
   const [loading, setLoading] = useState(false);
 
   const handleEnhance = async (index) => {
-    const apiKey = groqApiKey;
-    if (!apiKey) return;
-    if (!paras[index].trim()) return;
+    const textToEnhance = paras[index];
+    if (!textToEnhance.trim()) return;
 
     setLoading(true);
     try {
-      const groq = new Groq({ apiKey, dangerouslyAllowBrowser: true });
-      const response = await groq.chat.completions.create({
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an expert formal letter editor. Enhance the grammar, tone, and clarity of the following paragraph to make it highly professional. Preserve any HTML formatting tags like <b>, <i>, or <u>. Return only the improved text with no extra commentary.",
-          },
-          { role: "user", content: paras[index] },
-        ],
-        model: "llama-3.3-70b-versatile",
-      });
-      const enhanced = response.choices[0]?.message?.content || paras[index];
+      let enhanced = "";
+      if (groqApiKey) {
+        // User provided their own key via Settings
+        const groq = new Groq({ apiKey: groqApiKey, dangerouslyAllowBrowser: true });
+        const response = await groq.chat.completions.create({
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are an expert formal letter editor. Enhance the grammar, tone, and clarity of the following paragraph to make it highly professional. DO NOT include any concluding notes, sign-offs, or phrases like 'Thank you' or 'Yours faithfully'. Focus ONLY on enhancing the body text provided. Preserve any HTML formatting tags like <b>, <i>, or <u>. Return only the improved text with no extra commentary.",
+            },
+            { role: "user", content: textToEnhance },
+          ],
+          model: "llama-3.3-70b-versatile",
+        });
+        enhanced = response.choices[0]?.message?.content || textToEnhance;
+      } else {
+        // Fallback to Vercel Serverless Proxy
+        const res = await fetch("/api/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: textToEnhance }),
+        });
+        
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || `Server Error ${res.status}`);
+        }
+        
+        const data = await res.json();
+        enhanced = data.content || textToEnhance;
+      }
+
       const copy = [...paras];
       copy[index] = enhanced.trim();
       setParas(copy);
