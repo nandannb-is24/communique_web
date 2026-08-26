@@ -66,9 +66,10 @@ function parseSheetData(data) {
 
 export default function App() {
   // Load API key from localStorage, then environment variable
-  const [groqApiKey, setGroqApiKey] = useState(
-    () => localStorage.getItem("groqApiKey") || ""
-  );
+  const [groqApiKey, setGroqApiKey] = useState(() => {
+    const key = localStorage.getItem("groqApiKey");
+    return key === "null" || key === "undefined" ? "" : (key || "");
+  });
 
   useEffect(() => {
     if (groqApiKey) {

@@ -15,9 +15,10 @@ export default function ParagraphEditor({ paras, setParas, groqApiKey }) {
     setLoading(true);
     try {
       let enhanced = "";
-      if (groqApiKey) {
+      const trimmedKey = groqApiKey?.trim();
+      if (trimmedKey) {
         // User provided their own key via Settings
-        const groq = new Groq({ apiKey: groqApiKey, dangerouslyAllowBrowser: true });
+        const groq = new Groq({ apiKey: trimmedKey, dangerouslyAllowBrowser: true });
         const response = await groq.chat.completions.create({
           messages: [
             {
@@ -27,7 +28,7 @@ export default function ParagraphEditor({ paras, setParas, groqApiKey }) {
             },
             { role: "user", content: textToEnhance },
           ],
-          model: "llama-3.3-70b-versatile",
+          model: "openai/gpt-oss-20b",
         });
         enhanced = response.choices[0]?.message?.content || textToEnhance;
       } else {
